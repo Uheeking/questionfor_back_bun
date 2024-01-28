@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Context } from "elysia";
 import Like from "../model/like";
 
 export const likeHeart = async (req: any, res: any) => {
@@ -25,4 +25,12 @@ export const likeHeart = async (req: any, res: any) => {
     console.error("Error adding like:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+};
+export const getHeart = async (c: Context) => {
+  const like = await Like.find();
+  if (!like || like.length === 0) {
+    c.set.status = 404;
+    throw new Error("No likes found!");
+  }
+  return like;
 };

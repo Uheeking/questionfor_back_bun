@@ -1,7 +1,9 @@
 import { Elysia } from "elysia";
-import { likeHeart } from "../api/like";
+import { likeHeart, getHeart } from "../api/like";
 
 const likeRoutes = (app: Elysia) => {
-  app.group("/api/like", (app) => app.post("/:id", likeHeart));
+  app.group("/api/like", (app) =>
+    app.post("/:id", likeHeart).get("/", getHeart)
+  );
 };
 export default likeRoutes as any;
