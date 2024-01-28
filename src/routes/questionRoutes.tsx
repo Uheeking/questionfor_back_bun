@@ -1,7 +1,9 @@
-import { Elysia } from "elysia";
-import { getQuestion } from "../api/question";
+import { Elysia, t } from "elysia";
+import { postRegisterQuestion, getQuestion } from "../api/question";
 
 const questionRoutes = (app: Elysia) => {
-  app.group("/api/question", (app) => app.get("/", getQuestion));
+  app.group("/api/question", (app) =>
+    app.post("/", postRegisterQuestion).get("/", getQuestion)
+  );
 };
 export default questionRoutes as any;
