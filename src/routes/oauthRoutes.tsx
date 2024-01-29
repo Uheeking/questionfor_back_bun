@@ -13,9 +13,21 @@ const questionRoutes = (app: Elysia) => {
           expireAfter: 60 * 60, // 15 minutes
         })
       )
-      .get("/callback/kakao", getKakaoUser)
-      .get("/findUser/:id", getFindUser)
-      .get("/deleteUser/:id", getDeleteUser)
+      .get("/callback/kakao", getKakaoUser, {
+        detail: {
+          tags: ["Oauth"],
+        },
+      })
+      .get("/findUser/:id", getFindUser, {
+        detail: {
+          tags: ["Oauth"],
+        },
+      })
+      .get("/deleteUser/:id", getDeleteUser, {
+        detail: {
+          tags: ["Oauth"],
+        },
+      })
   );
 };
 export default questionRoutes as any;
