@@ -6,7 +6,14 @@ import { connectDB } from "./config";
 
 const app = new Elysia();
 connectDB();
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: /localhost.*/,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "PUT", "POST", "DELETE", "PATCH"],
+  })
+);
 
 app.get("/", () => "Welcome to our API");
 app.use(likeRoutes);
